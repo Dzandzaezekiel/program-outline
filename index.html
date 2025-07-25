@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Night Flyer - Interactive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles to extend Tailwind */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+        .text-gold {
+            color: #FFD700;
+        }
+        .bg-pattern {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://www.transparenttextures.com/patterns/dark-matter.png');
+        }
+        .card-glow {
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3), 0 0 30px rgba(255, 0, 0, 0.2);
+        }
+        /* Styles for the slide-in panel */
+        #summaryPanel {
+            transform: translateX(100%);
+            transition: transform 0.4s ease-in-out;
+        }
+        #summaryPanel.open {
+            transform: translateX(0);
+        }
+        #summaryOverlay {
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            pointer-events: none;
+        }
+        #summaryOverlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-black">
+    <div class="min-h-screen bg-gradient-to-br from-red-900 via-black to-red-800 bg-pattern flex items-center justify-center p-4 sm:p-6 lg:p-8">
+        <div class="w-full max-w-2xl bg-gray-900/50 backdrop-blur-sm border border-yellow-400/20 rounded-2xl shadow-2xl card-glow overflow-hidden">
+            
+            <!-- Header Section -->
+            <header class="text-center p-8 border-b-2 border-yellow-400/30">
+                <p class="text-white text-lg tracking-widest">LEGON BAPTIST CHURCH YOUTH/TEENS MINISTRY</p>
+                <p class="text-gold text-sm font-bold tracking-[0.2em]">PRESENTS</p>
+                <h1 class="font-cinzel text-6xl sm:text-7xl md:text-8xl text-white my-4" style="text-shadow: 0 0 10px #FFD700, 0 0 20px #FF0000;">
+                    Power Night
+                </h1>
+                <p class="text-white text-2xl font-bold">Youth Week 25</p>
+            </header>
+
+            <!-- Main Content: Schedule -->
+            <main class="p-8">
+                <h2 class="text-center text-gold text-3xl font-bold mb-8 tracking-wider">ORDER OF SERVICE</h2>
+                
+                <div class="space-y-4 text-white">
+                    
+                    <!-- Item 1: Opening Prayer -->
+                    <div class="bg-black/20 rounded-lg p-4 flex items-center space-x-4 cursor-pointer hover:bg-black/40 transition-colors" onclick="showSummary('openingPrayer')">
+                        <div class="text-right w-24 flex-shrink-0">
+                            <p class="font-bold text-lg text-gold">6:30 PM</p>
+                            <p class="text-sm text-gray-400">- 7:00 PM</p>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-xl">Opening Prayer & Welcome</h3>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Worship -->
+                    <div class="bg-black/20 rounded-lg p-4 flex items-center space-x-4 cursor-pointer hover:bg-black/40 transition-colors" onclick="showSummary('worship')">
+                        <div class="text-right w-24 flex-shrink-0">
+                            <p class="font-bold text-lg text-gold">7:00 PM</p>
+                            <p class="text-sm text-gray-400">- 7:30 PM</p>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-xl">Worship and Praise</h3>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Word & Ministration -->
+                    <div class="bg-black/20 rounded-lg p-4 flex items-center space-x-4 cursor-pointer hover:bg-black/40 transition-colors" onclick="showSummary('word')">
+                        <div class="text-right w-24 flex-shrink-0">
+                            <p class="font-bold text-lg text-gold">7:30 PM</p>
+                            <p class="text-sm text-gray-400">- 9:00 PM</p>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-xl">The Word & Ministration</h3>
+                            <p class="text-gray-300">With <span class="text-gold font-bold tracking-wider">Min. Sinclear</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: Prayer -->
+                    <div class="bg-black/20 rounded-lg p-4 flex items-center space-x-4 cursor-pointer hover:bg-black/40 transition-colors" onclick="showSummary('prayer')">
+                        <div class="text-right w-24 flex-shrink-0">
+                            <p class="font-bold text-lg text-gold">9:00 PM</p>
+                            <p class="text-sm text-gray-400">- 10:00 PM</p>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-xl">Intensive Prayer Session</h3>
+                             <p class="text-gray-300">Led by <span class="text-gold font-bold tracking-wider">Bro. Simon</span></p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Footer Section -->
+            <footer class="text-center bg-black/30 p-6 border-t-2 border-yellow-400/30">
+                <div class="flex flex-col sm:flex-row justify-around items-center space-y-4 sm:space-y-0">
+                    <div>
+                        <p class="font-bold text-gold">DATE</p>
+                        <p class="text-white">FRI. JULY 25TH 2025</p>
+                    </div>
+                     <div class="hidden sm:block h-12 w-px bg-yellow-400/50"></div>
+                    <div>
+                        <p class="font-bold text-gold">VENUE</p>
+                        <p class="text-white">LEGON BAPTIST CHURCH AUDITORIUM</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Slide-in Panel and Overlay -->
+    <div id="summaryOverlay" class="fixed inset-0 bg-black/70 z-40" onclick="hideSummary()"></div>
+    <div id="summaryPanel" class="fixed top-0 right-0 h-full w-full max-w-sm bg-gray-900 z-50 shadow-2xl shadow-black/50 p-6 flex flex-col">
+        <div class="flex justify-between items-center mb-6">
+            <h3 id="panelTitle" class="text-gold text-2xl font-bold"></h3>
+            <button onclick="hideSummary()" class="text-gray-400 hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+        </div>
+        <div class="text-gray-200 text-lg leading-relaxed overflow-y-auto">
+            <p id="panelContent"></p>
+        </div>
+    </div>
+
+    <script>
+        // Store summary data in a central object
+        const summaries = {
+            openingPrayer: {
+                title: 'Opening Prayer & Welcome',
+                content: 'A moment of thanksgiving, receiving forgiveness, and acknowledging the ever-present Holy Spirit.'
+            },
+            worship: {
+                title: 'Worship and Praise',
+                content: '<em>“Through Jesus, therefore, let us continually offer to God a sacrifice of praise—the fruit of lips that openly profess his name.”<br>Hebrews 13:15 NIV</em>'
+            },
+            word: {
+                title: 'The Word & Ministration',
+                content: 'What God wants to give you in your life is not a house, money, job, or a car. What God wants to give you is the word of God in your spirit; it will produce what it talks about. Be inspired by Min. Sinclear as he shares the word of God and ministers Spirit-taught songs.'
+            },
+            prayer: {
+                title: 'Intensive Prayer Session',
+                content: 'Prayer covers everything, when you pray believe that you have hearing and the answer is yours. Let\'s raise our voices together with Bro. Simon in this moment of prayer.'
+            }
+        };
+
+        // Get references to the panel and overlay elements
+        const panel = document.getElementById('summaryPanel');
+        const overlay = document.getElementById('summaryOverlay');
+        const panelTitle = document.getElementById('panelTitle');
+        const panelContent = document.getElementById('panelContent');
+
+        function showSummary(key) {
+            const data = summaries[key];
+            if (data) {
+                // Populate the panel with the correct content
+                panelTitle.textContent = data.title;
+                panelContent.innerHTML = data.content; // Use innerHTML to render the <em> and <br> tags
+
+                // Show the panel and overlay
+                panel.classList.add('open');
+                overlay.classList.add('open');
+            }
+        }
+
+        function hideSummary() {
+            // Hide the panel and overlay
+            panel.classList.remove('open');
+            overlay.classList.remove('open');
+        }
+    </script>
+</body>
+</html>
